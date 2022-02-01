@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TGBot", "TGBot\TGBot.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TGBot.Domain", "TGBot.Domain\TGBot.Domain.csproj", "{EC58B61E-88D0-4573-AC91-0977570B8AED}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TGBot.DataAccess", "TGBot.DataAccess\TGBot.DataAccess.csproj", "{78EB47D2-C098-4034-B5BC-09150692556C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{EC58B61E-88D0-4573-AC91-0977570B8AED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC58B61E-88D0-4573-AC91-0977570B8AED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC58B61E-88D0-4573-AC91-0977570B8AED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78EB47D2-C098-4034-B5BC-09150692556C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78EB47D2-C098-4034-B5BC-09150692556C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78EB47D2-C098-4034-B5BC-09150692556C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78EB47D2-C098-4034-B5BC-09150692556C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
