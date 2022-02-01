@@ -9,8 +9,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation.AspNetCore" Version="10.3.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.13" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.13" />
     <PackageReference Include="Telegram.Bot" Version="17.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TGBot.AppServices\TGBot.AppServices.csproj" />
+    <ProjectReference Include="..\TGBot.DataAccess\TGBot.DataAccess.csproj" />
+    <ProjectReference Include="..\TGBot.Infrastructure\TGBot.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
