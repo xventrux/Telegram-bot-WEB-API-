@@ -15,7 +15,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using TGBot.AppServices.Services.CommandServices;
 using TGBot.AppServices.Services.ProcessServices;
-using TGBot.AppServices.Services.TelegramUIServices;
 using TGBot.AppServices.Services.UpdateServices;
 using TGBot.AppServices.Services.UserServices;
 using TGBot.DataAccess;
@@ -50,7 +49,6 @@ namespace TGBot
             services.AddScoped<IProcessService, ProcessService>();
             services.AddScoped<IUpdateService, UpdateService>();
             services.AddScoped<IUserService, UserService>();
-            services.AddScoped<ITelegramUIService, TelegramUIService>();
 
             services.AddControllers().
                 AddNewtonsoftJson(options =>

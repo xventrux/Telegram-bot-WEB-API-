@@ -29,6 +29,12 @@ namespace TGBot.Contracts.Processes
                 }
                 
             }
+            else if(user.Step == 1)
+            {
+                user.UserName = msg.Text;
+                await client.SendTextMessageAsync(user.Id, "Регистрация успешно пройдена!");
+                user.ClearProcess();
+            }
 
             return user;
         }
