@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TGBot.Contracts.Base.Telegram;
 
 namespace TGBot.AppServices.Services.ProcessServices
 {

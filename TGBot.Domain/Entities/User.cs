@@ -20,5 +20,26 @@ namespace TGBot.Domain.Entities
         /// Псевдоним пользователя
         /// </summary>
         public string UserName { get; set; }
+
+        //Процесс в контексте нашей программы - это
+        //набор последовательных сообщений бота пользователю
+        //с возможным изменением данных пользователя
+        #region Процесс
+        /// <summary>
+        /// Наименование текущего процесса пользователя
+        /// </summary>
+        public string ProcessName { get; set; }
+
+        /// <summary>
+        /// Шаг процесса пользователя
+        /// </summary>
+        public int Step { get; set; }
+
+        public void ClearProcess()
+        {
+            ProcessName = "";
+            Step = 0;
+        }
+        #endregion
     }
 }

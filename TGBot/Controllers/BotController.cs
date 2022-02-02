@@ -7,6 +7,10 @@ using Telegram.Bot;
 using Telegram.Bot.Types;
 using TGBot.AppServices.Services.CommandServices;
 using TGBot.AppServices.Services.ProcessServices;
+using TGBot.AppServices.Services.UpdateServices;
+using TGBot.AppServices.Services.UserServices;
+using TGBot.Contracts;
+using TGBot.Contracts.Base.Telegram;
 
 namespace TGBot.Controllers
 {
@@ -20,14 +24,32 @@ namespace TGBot.Controllers
         private readonly ITelegramBotClient telegramBotClient;
         private readonly ICommandService commandService;
         private readonly IProcessService processService;
+        private readonly IUpdateService updateService;
+        private readonly IUserService userService;
 
-        public BotController(ITelegramBotClient telegramBotClient, 
-            ICommandService commandService, 
-            IProcessService processService)
+        public BotController(ITelegramBotClient telegramBotClient,
+            ICommandService commandService,
+            IProcessService processService,
+            IUpdateService updateService,
+            IUserService userService)
         {
             this.telegramBotClient = telegramBotClient;
             this.commandService = commandService;
             this.processService = processService;
+            this.updateService = updateService;
+            this.userService = userService;
+
+            List<BotCommand> botCommands = new List<BotCommand>();
+            foreach (var item in commandService.GetCommands())
+            {
+                botCommands.Add(new BotCommand()
+                {
+                    Command = item.Name,
+                    Description = item.Description
+                });
+            }
+
+            telegramBotClient.SetMyCommandsAsync(botCommands);
         }
 
         [HttpGet]
@@ -39,15 +61,6 @@ namespace TGBot.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] Update update)
         {
-
-            await telegramBotClient.SetMyCommandsAsync(new List<BotCommand>()
-            {
-                new BotCommand() { Command = "/start", Description = "Показать список команд" }
-            });
-
-            //Если обновление пустое, то ничего не делаем
-            if (update == null) return Ok();
-
             TelegramMessage message = updateService.Check(update);
 
             if (message == null) return Ok();
@@ -56,8 +69,10 @@ namespace TGBot.Controllers
 
             if (user == null)
             {
-                user = await userService.Registration(message.Id, message.Login);
-                await telegramBotClient.SendTextMessageAsync(user.Id, "Добро пожаловать");
+                user = await userService.Registration(message.Id);
+
+                var buttons = TelegramUI.CreateTextInline("Регистрация");
+                await telegramBotClient.SendTextMessageAsync(message.Id, "Для того чтобы продолжить, вам необходимо зарегистрироваться", replyMarkup: buttons);
                 return Ok();
             }
 
